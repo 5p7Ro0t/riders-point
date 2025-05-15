@@ -7,8 +7,8 @@
 
 ---
 
-**Rider’s Point** is a microservices-based backend project designed to connect bikers across regions.  
-It provides a real-time social network for riders to **make buddies, plan trips, share riding styles, help each other during emergencies, and engage in private chats**.
+**Rider’s Point** is a mobile-first social networking app built for bike enthusiasts.
+Backed by a scalable microservices architecture, it enables riders to **make buddies, plan trips, share riding styles, help each other during emergencies, and engage in private chats**.
 
 ---
 ### 🧩 Tech Stack:
