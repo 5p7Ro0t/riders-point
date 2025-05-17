@@ -1,4 +1,4 @@
-package com.riderspoint.user_service.pojo;
+package com.riderspoint.user_service.DTO;
 
 import java.time.LocalDate;
 
@@ -7,7 +7,7 @@ import com.riderspoint.user_service.constants.Gender;
 import lombok.Builder;
 
 @Builder
-public class BasicProfile {
+public class UserProfileDto {
 	private String username;
 	private String first_name;
 	private String last_name;

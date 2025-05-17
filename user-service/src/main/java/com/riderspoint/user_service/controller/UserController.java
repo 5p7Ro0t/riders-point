@@ -13,9 +13,10 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.riderspoint.user_service.pojo.BasicProfile;
+import com.riderspoint.user_service.pojo.UserProfile;
 import com.riderspoint.user_service.pojo.BikeDetails;
 import com.riderspoint.user_service.pojo.RidingDetails;
+import com.riderspoint.user_service.pojo.SocialDetails;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -25,54 +26,61 @@ import lombok.extern.slf4j.Slf4j;
 public class UserController {
 
 	@GetMapping("/me")
-	public ResponseEntity<BasicProfile> getUserProfile(@RequestHeader("Authorization") String authorization_token) {
-		log.info("Authorization Token : {}", authorization_token);
-		return new ResponseEntity<>(BasicProfile.builder().build(), HttpStatus.OK);
+	public ResponseEntity<UserProfile> getUserProfile(@RequestHeader("Authorization") String authToken) {
+		log.info("Authorization Token : {}", authToken);
+		return new ResponseEntity<>(UserProfile.builder().build(), HttpStatus.OK);
 	}
 	
 	@PostMapping("/register")
-	public ResponseEntity<String> createUserProfile(@RequestHeader("Authorization") String authorization_token,@RequestBody BasicProfile profile){
+	public ResponseEntity<String> createUserProfile(@RequestHeader("Authorization") String authToken,@RequestBody UserProfile profile){
+		
 		log.info("User Details : {}", profile);
 		return new ResponseEntity<>("Success",HttpStatus.OK);
 	}
 	
 	@PostMapping("/profile/riding-details")
-	public void addRidingDetails(@RequestHeader("Authorization") String authorization_token, @RequestBody RidingDetails ridingDetails) {
+	public void addRidingDetails(@RequestHeader("Authorization") String authToken, @RequestBody RidingDetails ridingDetails) {
 		
 	}
 	
 	@PostMapping("/profile/bike-details")
-	public void addBikeDetails(@RequestHeader("Authorization") String authorization_token, @RequestBody BikeDetails bikeDetails) {
+	public void addBikeDetails(@RequestHeader("Authorization") String authToken, @RequestBody BikeDetails bikeDetails) {
 		
 	}
 	
-	public void addAboutMe(@RequestHeader("Authorization") String authorization_token) {
+	@PostMapping("/profile/social-details")
+	public void addSocialDetails(@RequestHeader("Authorization") String authToken, @RequestBody SocialDetails socialDetails) {
 		
 	}
 	
 	@PutMapping("/profile/basics")
-	public ResponseEntity<BasicProfile> updateBasicProfile(@RequestHeader("Authorization") String authorization_token,@RequestBody BasicProfile profile) {
-		return new ResponseEntity<>(BasicProfile.builder().build(), HttpStatus.OK);
+	public ResponseEntity<UserProfile> updateBasicProfile(@RequestHeader("Authorization") String authToken,@RequestBody UserProfile profile) {
+		return new ResponseEntity<>(UserProfile.builder().build(), HttpStatus.OK);
 	}
 	
 	@PutMapping("/profile/riding-details")
-	public void updateRidingDetails(@RequestHeader("Authorization") String authorization_token, @RequestBody RidingDetails ridingDetails) {
+	public void updateRidingDetails(@RequestHeader("Authorization") String authToken, @RequestBody RidingDetails ridingDetails) {
 		
 	}
 	
 	@PutMapping("/profile/bike-details")
-	public void updateBikeDetails(@RequestHeader("Authorization") String authorization_token, @RequestBody BikeDetails bikeDetails) {
+	public void updateBikeDetails(@RequestHeader("Authorization") String authToken, @RequestBody BikeDetails bikeDetails) {
+		
+	}
+	
+	@PutMapping("/profile/social-details")
+	public void updateSocialDetails(@RequestHeader("Authorization") String authToken, @RequestBody SocialDetails socialDetails) {
 		
 	}
 	
 	@GetMapping("/profile/completion-status")
-	public ResponseEntity<String> checkCompletionStatus(@RequestHeader("Authorization") String authorization_token){
+	public ResponseEntity<String> checkCompletionStatus(@RequestHeader("Authorization") String authToken){
 		return new ResponseEntity<>("Success",HttpStatus.OK);
 	}
 	
 	@GetMapping("/search")
-	public ResponseEntity<List<BasicProfile>> getRiders(@RequestHeader("Authorization") String authToken){
-		return new ResponseEntity<>(new ArrayList<BasicProfile>(), HttpStatus.OK);
+	public ResponseEntity<List<UserProfile>> getRiders(@RequestHeader("Authorization") String authToken){
+		return new ResponseEntity<>(new ArrayList<UserProfile>(), HttpStatus.OK);
 	}
 	
 	
