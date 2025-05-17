@@ -5,8 +5,10 @@ import java.time.LocalDate;
 import com.riderspoint.user_service.constants.Gender;
 
 import lombok.Builder;
+import lombok.Data;
 
-@Builder
+
+@Data
 public class UserProfileDto {
 	private String username;
 	private String first_name;

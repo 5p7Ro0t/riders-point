@@ -3,6 +3,7 @@ package com.riderspoint.user_service.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,10 +14,13 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.riderspoint.user_service.pojo.UserProfile;
+import com.riderspoint.user_service.DTO.UserProfileDto;
 import com.riderspoint.user_service.pojo.BikeDetails;
 import com.riderspoint.user_service.pojo.RidingDetails;
 import com.riderspoint.user_service.pojo.SocialDetails;
+import com.riderspoint.user_service.pojo.UserProfile;
+import com.riderspoint.user_service.service.impl.UserServiceImpl;
+import com.riderspoint.user_service.service.interfaces.UserService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -24,18 +28,31 @@ import lombok.extern.slf4j.Slf4j;
 @RestController
 @RequestMapping("/api/user")
 public class UserController {
-
+	
+	private final UserService userService;
+	private final ModelMapper modelMapper;
+	public UserController(ModelMapper modelMapper, UserServiceImpl userService) {
+		this.modelMapper = modelMapper;
+		this.userService = userService;
+	}
+	
 	@GetMapping("/me")
 	public ResponseEntity<UserProfile> getUserProfile(@RequestHeader("Authorization") String authToken) {
+		
+		UserProfileDto userProfileDto = userService.getUserProfile(authToken);
+		
+		UserProfile profile = modelMapper.map(userProfileDto, UserProfile.class);
 		log.info("Authorization Token : {}", authToken);
-		return new ResponseEntity<>(UserProfile.builder().build(), HttpStatus.OK);
+		return new ResponseEntity<>(profile, HttpStatus.OK);
 	}
 	
 	@PostMapping("/register")
 	public ResponseEntity<String> createUserProfile(@RequestHeader("Authorization") String authToken,@RequestBody UserProfile profile){
 		
+		UserProfileDto userProfile = modelMapper.map(profile, UserProfileDto.class);
+		userService.createUserProfile(profile.getUsername(), userProfile);
 		log.info("User Details : {}", profile);
-		return new ResponseEntity<>("Success",HttpStatus.OK);
+		return new ResponseEntity<>("Success",HttpStatus.CREATED);
 	}
 	
 	@PostMapping("/profile/riding-details")
@@ -54,8 +71,8 @@ public class UserController {
 	}
 	
 	@PutMapping("/profile/basics")
-	public ResponseEntity<UserProfile> updateBasicProfile(@RequestHeader("Authorization") String authToken,@RequestBody UserProfile profile) {
-		return new ResponseEntity<>(UserProfile.builder().build(), HttpStatus.OK);
+	public ResponseEntity<String> updateBasicProfile(@RequestHeader("Authorization") String authToken,@RequestBody UserProfile profile) {
+		return new ResponseEntity<>("", HttpStatus.OK);
 	}
 	
 	@PutMapping("/profile/riding-details")

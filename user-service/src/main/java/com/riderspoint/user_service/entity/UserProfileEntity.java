@@ -21,7 +21,6 @@ import lombok.Data;
 
 @Entity
 @Table(name = "user_profile")
-@Builder
 @Data
 public class UserProfileEntity {
 	

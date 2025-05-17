@@ -7,7 +7,7 @@ import com.riderspoint.user_service.constants.Gender;
 import lombok.Builder;
 import lombok.Data;
 
-@Builder
+
 @Data
 public class UserProfile {
 	private String username;
