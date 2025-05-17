@@ -20,8 +20,12 @@ import com.riderspoint.user_service.pojo.RidingDetails;
 import com.riderspoint.user_service.pojo.SocialDetails;
 import com.riderspoint.user_service.pojo.UserProfile;
 import com.riderspoint.user_service.service.impl.BikeServiceImpl;
+import com.riderspoint.user_service.service.impl.RidingServiceImpl;
+import com.riderspoint.user_service.service.impl.SocialServiceImpl;
 import com.riderspoint.user_service.service.impl.UserServiceImpl;
 import com.riderspoint.user_service.service.interfaces.BikeService;
+import com.riderspoint.user_service.service.interfaces.RidingService;
+import com.riderspoint.user_service.service.interfaces.SocialService;
 import com.riderspoint.user_service.service.interfaces.UserService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -34,10 +38,16 @@ public class UserController {
 	private final ModelMapper modelMapper;
 	private final UserService userService;
 	private final BikeService bikeService;
-	public UserController(ModelMapper modelMapper, UserServiceImpl userService, BikeServiceImpl bikeService) {
+	private final RidingService ridingService;
+	private final SocialService socialService;
+	
+	
+	public UserController(ModelMapper modelMapper, UserServiceImpl userService, BikeServiceImpl bikeService, RidingServiceImpl ridingService, SocialServiceImpl socialService) {
 		this.modelMapper = modelMapper;
 		this.userService = userService;
 		this.bikeService = bikeService;
+		this.socialService = socialService;
+		this.ridingService = ridingService;
 	}
 	
 	@GetMapping("/me")

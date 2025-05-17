@@ -1,12 +1,21 @@
 package com.riderspoint.user_service.service.impl;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import com.riderspoint.user_service.DTO.RidingDetailsDto;
+import com.riderspoint.user_service.repository.RidingDetailsRepository;
 import com.riderspoint.user_service.service.interfaces.RidingService;
 
 @Service
 public class RidingServiceImpl implements RidingService {
+
+	private final RidingDetailsRepository ridingRepo;
+	private final ModelMapper modelMapper;
+	public RidingServiceImpl(RidingDetailsRepository ridingRepo, ModelMapper modelMapper) {
+		this.ridingRepo = ridingRepo;
+		this.modelMapper = modelMapper;
+	}
 
 	@Override
 	public RidingDetailsDto getRidingDetails(String username) {
