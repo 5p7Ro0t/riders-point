@@ -9,5 +9,5 @@ import lombok.Data;
 public class BikeDetails {
 	private BikeType bike_type;
 	private String bike_model;
-	private int km_ridden;
+	private Integer km_ridden;
 }

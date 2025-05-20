@@ -76,7 +76,7 @@ public class UserController {
 	@PostMapping("/profile/riding-details")
 	public ResponseEntity<String> addRidingDetails(@RequestHeader("Authorization") String authToken, @RequestBody RidingDetails ridingDetails) {
 		RidingDetailsDto ridingDetailsDto = modelMapper.map(ridingDetails, RidingDetailsDto.class);
-		ridingService.addRidingDetails(authToken, ridingDetailsDto);
+		ridingService.updateRidingDetails(authToken, ridingDetailsDto);
 		
 		return new ResponseEntity<>("Success", HttpStatus.CREATED);
 	}
@@ -84,7 +84,7 @@ public class UserController {
 	@PostMapping("/profile/bike-details")
 	public ResponseEntity<String> addBikeDetails(@RequestHeader("Authorization") String authToken, @RequestBody BikeDetails bikeDetails) {
 		BikeDetailsDto bikeDetailsDto = modelMapper.map(bikeDetails, BikeDetailsDto.class);
-		bikeService.addBikeDetails(authToken, bikeDetailsDto);
+		bikeService.updateBikeDetails(authToken, bikeDetailsDto);
 		
 		return new ResponseEntity<>("Success", HttpStatus.CREATED);
 	}
@@ -97,21 +97,6 @@ public class UserController {
 	@PutMapping("/profile/basics")
 	public ResponseEntity<String> updateBasicProfile(@RequestHeader("Authorization") String authToken,@RequestBody UserProfile profile) {
 		return new ResponseEntity<>("", HttpStatus.OK);
-	}
-	
-	@PutMapping("/profile/riding-details")
-	public void updateRidingDetails(@RequestHeader("Authorization") String authToken, @RequestBody RidingDetails ridingDetails) {
-		
-	}
-	
-	@PutMapping("/profile/bike-details")
-	public void updateBikeDetails(@RequestHeader("Authorization") String authToken, @RequestBody BikeDetails bikeDetails) {
-		
-	}
-	
-	@PutMapping("/profile/social-details")
-	public void updateSocialDetails(@RequestHeader("Authorization") String authToken, @RequestBody SocialDetails socialDetails) {
-		
 	}
 	
 	@GetMapping("/profile/completion-status")

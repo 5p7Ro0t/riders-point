@@ -7,7 +7,7 @@ import lombok.Data;
 @Data
 public class RidingDetailsDto {
 	private RidingStyle riding_style;
-	private int riding_experience;
+	private Integer riding_experience;
 	private String rider_motto;
 	
 }

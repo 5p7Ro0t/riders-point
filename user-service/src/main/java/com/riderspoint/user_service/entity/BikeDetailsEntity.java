@@ -26,7 +26,7 @@ public class BikeDetailsEntity {
 	private BikeType bike_type;
 	
 	private String bike_model;
-	private int km_ridden;
+	private Integer km_ridden;
 	
 	@OneToOne(mappedBy = "bikeDetails")
     private UserProfileEntity userProfile;

@@ -24,7 +24,7 @@ public class RidingDetailsEntity {
 	@Enumerated(EnumType.STRING)
 	private RidingStyle riding_style;
 	
-	private int riding_experience;
+	private Integer riding_experience;
 	private String rider_motto;
 	
 	

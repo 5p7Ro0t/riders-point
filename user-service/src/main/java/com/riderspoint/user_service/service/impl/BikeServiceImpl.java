@@ -42,7 +42,7 @@ public class BikeServiceImpl implements BikeService {
 	}
 
 	@Override
-	public void addBikeDetails(String username, BikeDetailsDto details) {
+	public void updateBikeDetails(String username, BikeDetailsDto details) {
 		// TODO Auto-generated method stub
 		UserProfileEntity user = userRepo.findByUsername(username)
 		        .orElseThrow(() -> new RuntimeException("User not found"));
@@ -52,18 +52,22 @@ public class BikeServiceImpl implements BikeService {
 
 	        bikeDetailsEntity.setUserProfile(user);    
 	        user.setBikeDetails(bikeDetailsEntity); 
-	        userRepo.save(user);
 	    }	
 		
 		else {
-			
+			BikeDetailsEntity bikeDetailsEntity = user.getBikeDetails();
+//			log.info("BikeDetails in Database : {}",bikeDetailsEntity.getKm_ridden());
+//			log.info("BikeDetails Passed : {}",details);
+			if(details.getBike_model() != null) {
+				bikeDetailsEntity.setBike_model(details.getBike_model());
+			}
+			if(details.getBike_type() != null) {
+				bikeDetailsEntity.setBike_type(details.getBike_type());
+			}
+			if(details.getKm_ridden() != null) {
+				bikeDetailsEntity.setKm_ridden(details.getKm_ridden());
+			}
 		}
+		userRepo.save(user);
 	}
-
-	@Override
-	public void updateBikeDetails(String username, BikeDetailsDto details) {
-		// TODO Auto-generated method stub
-
-	}
-
 }

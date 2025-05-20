@@ -27,7 +27,7 @@ public class RidingServiceImpl implements RidingService {
 	}
 
 	@Override
-	public void addRidingDetails(String username, RidingDetailsDto details) {
+	public void updateRidingDetails(String username, RidingDetailsDto details) {
 		// TODO Auto-generated method stub
 		UserProfileEntity user = userRepo.findByUsername(username)
 		        .orElseThrow(() -> new RuntimeException("User not found"));
@@ -37,18 +37,21 @@ public class RidingServiceImpl implements RidingService {
 
 	        ridingDetailsEntity.setUserProfile(user);    
 	        user.setRidingDetails(ridingDetailsEntity); 
-	        userRepo.save(user);
 	    }	
 		
 		else {
-			
+			RidingDetailsEntity ridingDetailsEntity = user.getRidingDetails();
+			if (details.getRider_motto() != null) {
+				ridingDetailsEntity.setRider_motto(details.getRider_motto());
+			}
+			if(details.getRiding_experience() != null) {
+				ridingDetailsEntity.setRiding_experience(details.getRiding_experience());
+			}
+			if(details.getRiding_style() != null) {
+				ridingDetailsEntity.setRiding_style(details.getRiding_style());
+			}			
 		}
+		
+		userRepo.save(user);
 	}
-
-	@Override
-	public void updateRidingDetails(String username, RidingDetailsDto details) {
-		// TODO Auto-generated method stub
-
-	}
-
 }

@@ -8,5 +8,5 @@ import lombok.Data;
 public class BikeDetailsDto{
 	private BikeType bike_type;
 	private String bike_model;
-	private int km_ridden;
+	private Integer km_ridden;
 }
