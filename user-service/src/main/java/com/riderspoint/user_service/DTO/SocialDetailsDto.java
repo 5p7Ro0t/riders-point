@@ -1,8 +1,8 @@
 package com.riderspoint.user_service.DTO;
 
-import lombok.Builder;
+import lombok.Data;
 
-@Builder
+@Data
 public class SocialDetailsDto {
 	public String linkedin_url;
 	public String instagram_url;

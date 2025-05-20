@@ -6,7 +6,6 @@ import lombok.Builder;
 import lombok.Data;
 
 @Data
-@Builder
 public class BikeDetails {
 	private BikeType bike_type;
 	private String bike_model;

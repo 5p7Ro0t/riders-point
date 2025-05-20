@@ -19,4 +19,7 @@ public class UserProfile {
 	private String email;
 	private Gender gender;
 	private String about_me;
+	private RidingDetails ridingDetails;
+	private BikeDetails bikeDetails;
+	private SocialDetails socialDetails;
 }

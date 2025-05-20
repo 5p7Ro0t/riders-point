@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.riderspoint.user_service.DTO.BikeDetailsDto;
+import com.riderspoint.user_service.DTO.RidingDetailsDto;
 import com.riderspoint.user_service.DTO.UserProfileDto;
 import com.riderspoint.user_service.pojo.BikeDetails;
 import com.riderspoint.user_service.pojo.RidingDetails;
@@ -58,6 +60,7 @@ public class UserController {
 		UserProfile profile = modelMapper.map(userProfileDto, UserProfile.class);
 		log.info("Authorization Token : {}", authToken);
 		return new ResponseEntity<>(profile, HttpStatus.OK);
+		
 	}
 	
 	@PostMapping("/register")
@@ -67,16 +70,23 @@ public class UserController {
 		userService.createUserProfile(profile.getUsername(), userProfile);
 		log.info("User Details : {}", profile);
 		return new ResponseEntity<>("Success",HttpStatus.CREATED);
+		
 	}
 	
 	@PostMapping("/profile/riding-details")
-	public void addRidingDetails(@RequestHeader("Authorization") String authToken, @RequestBody RidingDetails ridingDetails) {
+	public ResponseEntity<String> addRidingDetails(@RequestHeader("Authorization") String authToken, @RequestBody RidingDetails ridingDetails) {
+		RidingDetailsDto ridingDetailsDto = modelMapper.map(ridingDetails, RidingDetailsDto.class);
+		ridingService.addRidingDetails(authToken, ridingDetailsDto);
 		
+		return new ResponseEntity<>("Success", HttpStatus.CREATED);
 	}
 	
 	@PostMapping("/profile/bike-details")
-	public void addBikeDetails(@RequestHeader("Authorization") String authToken, @RequestBody BikeDetails bikeDetails) {
+	public ResponseEntity<String> addBikeDetails(@RequestHeader("Authorization") String authToken, @RequestBody BikeDetails bikeDetails) {
+		BikeDetailsDto bikeDetailsDto = modelMapper.map(bikeDetails, BikeDetailsDto.class);
+		bikeService.addBikeDetails(authToken, bikeDetailsDto);
 		
+		return new ResponseEntity<>("Success", HttpStatus.CREATED);
 	}
 	
 	@PostMapping("/profile/social-details")

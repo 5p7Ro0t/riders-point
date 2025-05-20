@@ -19,4 +19,7 @@ public class UserProfileDto {
 	private String email;
 	private Gender gender;
 	private String about_me;
+	private RidingDetailsDto ridingDetails;
+	private BikeDetailsDto bikeDetails;
+	private SocialDetailsDto socialDetails;
 }

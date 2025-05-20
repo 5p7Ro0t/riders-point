@@ -5,7 +5,6 @@ import com.riderspoint.user_service.constants.RidingStyle;
 import lombok.Builder;
 import lombok.Data;
 
-@Builder
 @Data
 public class RidingDetails {
 	private RidingStyle riding_style;

@@ -26,16 +26,17 @@ public class UserServiceImpl implements UserService {
 		// TODO Auto-generated method stub
 		
 		Optional<UserProfileEntity> userOpt = userRepo.findByUsername(username);
-		UserProfileEntity userProfileEntity = null;
+		
 		
 		if(userOpt.isPresent()) {
-			userProfileEntity = userOpt.get();
+			UserProfileEntity userProfileEntity = userOpt.get();
+			UserProfileDto userProfileDto = modelMapper.map(userProfileEntity, UserProfileDto.class);
+			return userProfileDto;
 		}
 		else {
 			
 		}
-		UserProfileDto userProfileDto = modelMapper.map(userProfileEntity, UserProfileDto.class);
-		return userProfileDto;
+		return null;
 	}
 
 	@Override
@@ -54,7 +55,6 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public void updateBasicProfile(String username, UserProfileDto profile) {
 		// TODO Auto-generated method stub
-
+		userRepo.findByUsername(username);
 	}
-
 }

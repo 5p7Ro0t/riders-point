@@ -2,9 +2,9 @@ package com.riderspoint.user_service.DTO;
 
 import com.riderspoint.user_service.constants.BikeType;
 
-import lombok.Builder;
+import lombok.Data;
 
-@Builder
+@Data
 public class BikeDetailsDto{
 	private BikeType bike_type;
 	private String bike_model;

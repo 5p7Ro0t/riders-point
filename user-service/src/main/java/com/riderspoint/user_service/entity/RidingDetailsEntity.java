@@ -16,7 +16,6 @@ import lombok.Data;
 @Entity
 @Table(name = "riding_details")
 @Data
-@Builder
 public class RidingDetailsEntity {
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
