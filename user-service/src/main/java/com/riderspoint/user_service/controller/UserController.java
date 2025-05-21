@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.riderspoint.user_service.DTO.BikeDetailsDto;
 import com.riderspoint.user_service.DTO.RidingDetailsDto;
+import com.riderspoint.user_service.DTO.SocialDetailsDto;
 import com.riderspoint.user_service.DTO.UserProfileDto;
 import com.riderspoint.user_service.pojo.BikeDetails;
 import com.riderspoint.user_service.pojo.RidingDetails;
@@ -74,7 +75,7 @@ public class UserController {
 	}
 	
 	@PostMapping("/profile/riding-details")
-	public ResponseEntity<String> addRidingDetails(@RequestHeader("Authorization") String authToken, @RequestBody RidingDetails ridingDetails) {
+	public ResponseEntity<String> updateRidingDetails(@RequestHeader("Authorization") String authToken, @RequestBody RidingDetails ridingDetails) {
 		RidingDetailsDto ridingDetailsDto = modelMapper.map(ridingDetails, RidingDetailsDto.class);
 		ridingService.updateRidingDetails(authToken, ridingDetailsDto);
 		
@@ -82,7 +83,7 @@ public class UserController {
 	}
 	
 	@PostMapping("/profile/bike-details")
-	public ResponseEntity<String> addBikeDetails(@RequestHeader("Authorization") String authToken, @RequestBody BikeDetails bikeDetails) {
+	public ResponseEntity<String> updateBikeDetails(@RequestHeader("Authorization") String authToken, @RequestBody BikeDetails bikeDetails) {
 		BikeDetailsDto bikeDetailsDto = modelMapper.map(bikeDetails, BikeDetailsDto.class);
 		bikeService.updateBikeDetails(authToken, bikeDetailsDto);
 		
@@ -90,8 +91,11 @@ public class UserController {
 	}
 	
 	@PostMapping("/profile/social-details")
-	public void addSocialDetails(@RequestHeader("Authorization") String authToken, @RequestBody SocialDetails socialDetails) {
+	public ResponseEntity<String> updateSocialDetails(@RequestHeader("Authorization") String authToken, @RequestBody SocialDetails socialDetails) {
+		SocialDetailsDto socialDetailsDto = modelMapper.map(socialDetails, SocialDetailsDto.class);
+		socialService.updateSocialDetails(authToken, socialDetailsDto);
 		
+		return new ResponseEntity<>("Success",HttpStatus.CREATED);
 	}
 	
 	@PutMapping("/profile/basics")
@@ -108,8 +112,6 @@ public class UserController {
 	public ResponseEntity<List<UserProfile>> getRiders(@RequestHeader("Authorization") String authToken){
 		return new ResponseEntity<>(new ArrayList<UserProfile>(), HttpStatus.OK);
 	}
-	
-	
 	
 	@PutMapping("/profile/status/emergency-responder")
 	public ResponseEntity<String> updateEmergencyResponderStatus(@RequestHeader("Authorization") String authToken) {
