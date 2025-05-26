@@ -5,6 +5,7 @@
 > 🚧 **Project Status: Work in Progress**  
 > This project is under active development. Features may change or break during updates. Stay tuned!
 
+> Track My Project [here](https://scandalous-thrill-eef.notion.site/Rider-s-Point-1ff5cec123f0808f97c4dfe27d272346).
 ---
 
 **Rider’s Point** is a mobile-first social networking app built for bike enthusiasts.
@@ -17,3 +18,5 @@ Backed by a scalable microservices architecture, it enables riders to **make bud
 - MySQL (Persistent data storage)
 - WebSocket (Real-time chat)
 - JWT (Authentication)
+
+
